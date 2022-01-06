@@ -13,6 +13,7 @@
         {% endif %}
         <p><strong>Ticket envoyé par : </strong> {{ ticket.uploader }}</p>
         <p><strong>Date de création du Ticket : </strong> {{ ticket.date_created }}</p>
+        <p><a href="{% url 'edit-ticket' ticket.id %}"> Edit/Supp</a></p>
         <p>------------------------------------</p>
     {% endfor %}
 

@@ -28,7 +28,9 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('ticket_creator/', app.views.ticket_creator_form, name='ticket-creator'),
     path('review_creator/', app.views.review_creator_form, name='review-creator'),
-    path('review/<int:review_id>', app.views.view_review, name='view-review')
+    path('review/<int:review_id>', app.views.view_review, name='view-review'),
+    path('edit_ticket/<int:ticket_id>/', app.views.edit_ticket, name='edit-ticket'),
+    path('edit_review/<int:review_id>/', app.views.edit_review, name='edit-review'),
 ]
 
 if settings.DEBUG:

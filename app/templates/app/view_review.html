@@ -7,4 +7,5 @@
         <p>{{ review.advised }}</p>
         <p>{{ review.uploader }}</p>
         <p>{{ review.date_created }}</p>
+        <p><a href="{% url 'edit-review' review.id %}"> Edit/Supp</a></p>
 {% endblock content %}
