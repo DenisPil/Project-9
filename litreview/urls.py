@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.conf import settings
+from django.conf.urls.static import static
 import authentication.views
 import app.views
 
@@ -27,4 +28,9 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('ticket_creator/', app.views.ticket_creator_form, name='ticket-creator'),
     path('review_creator/', app.views.review_creator_form, name='review-creator'),
+    path('review/<int:review_id>', app.views.view_review, name='view-review')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

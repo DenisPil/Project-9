@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ review.book_name }}</h2>
+        <p>{{ review.author_name }}</p>
+        <p>{{ review.content }}</p>
+        <p>{{ review.advised }}</p>
+        <p>{{ review.uploader }}</p>
+        <p>{{ review.date_created }}</p>
+{% endblock content %}

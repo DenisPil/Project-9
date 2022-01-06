@@ -7,7 +7,7 @@ from . import models
 class TicketForm(forms.ModelForm):
     class Meta:
         model = models.Ticket
-        fields = ['book_name','author_book', 'content']
+        fields = ['book_name','author_book', 'content', 'image']
 
 
 """Formulaire pour la création d'une review"""
