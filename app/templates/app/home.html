@@ -5,6 +5,7 @@
     <p><a href="{% url 'review-creator' %}">Création d'une review</a></p>
     <h2>Ticket</h2>
     {% for ticket in tickets %}
+    <p><a href="{% url 'ticket-reponse' ticket.id %}">Donner son avis</a></p>
     <p><strong> ID : </strong> {{ ticket.id }}</p>
     <p><strong> Nom du livre : </strong> {{ ticket.book_name }}</p>
         <p><strong>Auteur : </strong> {{ ticket.author_book }}</p>

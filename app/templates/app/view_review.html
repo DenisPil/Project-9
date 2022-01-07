@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h2></h2>
+
+
     <h2>{{ review.book_name }}</h2>
         <p>Titre : {{ review.headline }}</p>
         <p>Avis : {{ review.content }}</p>
         <p>Id : {{ review.id }}</p>
-        <p>Ticket ID {{ review.ticket }}</p>
+        <p>Ticket ID {{ review.ticket.author_book }}</p>
 
         <p>{{ review.uploader }}</p>
         <p>{{ review.date_created }}</p>

@@ -31,6 +31,7 @@ urlpatterns = [
     path('review/<int:review_id>', app.views.view_review, name='view-review'),
     path('edit_ticket/<int:ticket_id>/', app.views.edit_ticket, name='edit-ticket'),
     path('edit_review/<int:review_id>/', app.views.edit_review, name='edit-review'),
+    path('ticket/<int:ticket_id>/reponse/', app.views.ticket_reponse, name='ticket-reponse'),
 ]
 
 if settings.DEBUG:
