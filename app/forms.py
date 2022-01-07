@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django import forms
 from django.db.models import fields
+
 from . import models
 
+User = get_user_model()
 
 """Formulaire pour la création de nouveau ticket"""
 class TicketForm(forms.ModelForm):
@@ -28,3 +31,9 @@ class DeleteTicketForm(forms.Form):
 class DeleteReviewForm(forms.Form):
     delete_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     
+
+"""Formulaire pour suivre un utilisateur"""
+class FollowUsersForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['follows']

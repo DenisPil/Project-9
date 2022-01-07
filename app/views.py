@@ -59,6 +59,7 @@ def view_review(request, review_id, ):
 @login_required
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    edit_form = forms.TicketForm(instance=ticket)
     delete_form = forms.DeleteTicketForm()
     if request.method == 'POST':
         if 'edit_ticket' in request.POST:
@@ -101,6 +102,8 @@ def edit_review(request, review_id):
               }
     return render(request, 'app/edit_review.html', context=context)
 
+
+"""Vue qui représente la réponse a un ticket"""
 def ticket_reponse(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id= ticket_id)
     review_form = forms.ReviewForm()
@@ -119,6 +122,15 @@ def ticket_reponse(request, ticket_id):
     return render(request, 'app/ticket_reponse.html', context=context)
 
 
-
-
-
+"""Vue qui permet de suivre un utilisateur"""
+def follow_users(request):
+    form = forms.FollowUsersForm(instance=request.user)
+    user = request.user
+    if request.method == 'POST':
+        form = forms.FollowUsersForm(request.POST, instance=request.user)
+        if form.is_valid():
+            followers = form.save(commit=False)
+            followers.save()
+            followers.follows.add(request.user, through_defaults={'user' : 'followed_user'})
+            return redirect('home')
+    return render(request,'app/follow_users_form.html', context={'form': form, 'user': user})

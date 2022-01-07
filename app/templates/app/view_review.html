@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2></h2>
-
-
     <h2>{{ review.book_name }}</h2>
         <p>Titre : {{ review.headline }}</p>
         <p>Avis : {{ review.content }}</p>
@@ -12,5 +9,7 @@
 
         <p>{{ review.uploader }}</p>
         <p>{{ review.date_created }}</p>
-        <p><a href="{% url 'edit-review' review.id %}"> Edit/Supp</a></p>
+        {% if request.user == review.uploader %}
+            <p><a href="{% url 'edit-review' review.id %}"> Edit/Supp</a></p>
+        {% endif %}
 {% endblock content %}
