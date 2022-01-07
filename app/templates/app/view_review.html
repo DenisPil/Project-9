@@ -2,10 +2,10 @@
 
 {% block content %}
     <h2>{{ review.book_name }}</h2>
-        <p>{{ review.headline }}</p>
-        <p>{{ review.content }}</p>
-        <p>{{ review.id }}</p>
-        <p>{{ review.ticket }}</p>
+        <p>Titre : {{ review.headline }}</p>
+        <p>Avis : {{ review.content }}</p>
+        <p>Id : {{ review.id }}</p>
+        <p>Ticket ID {{ review.ticket }}</p>
 
         <p>{{ review.uploader }}</p>
         <p>{{ review.date_created }}</p>

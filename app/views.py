@@ -103,17 +103,17 @@ def review_creator_form(request):
     ticket_form = forms.TicketForm()
     if request.method == 'POST':
         review_form = forms.ReviewForm(request.POST)
-        if review_form.is_valid():
-            review = review_form.save(commit=False)
-            review.uploader = request.user
-            
-            review.save()
-            
-        if ticket_form.is_valid():
+        ticket_form = forms.TicketForm(request.POST, request.FILES)
+        if all([review_form.is_valid(), ticket_form.is_valid()]):
             ticket = ticket_form.save(commit=False)
             ticket.uploader = request.user
-            review.id = ticket.id
             ticket.save()
+            review = review_form.save(commit=False)
+            review.uploader = request.user
+            review.ticket = ticket
+            review.save()
+            
+
 
         return redirect('home')
     return render(request, 'app/review_creator.html', context=
