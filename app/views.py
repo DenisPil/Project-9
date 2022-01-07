@@ -27,7 +27,7 @@ def ticket_creator_form(request):
     return render(request, 'app/ticket_creator.html', context={'form': form})
 
 
-"""Vue de la création d'une review'"""
+"""Vue de la création d'une review
 @login_required
 def review_creator_form(request):
     form = forms.ReviewForm()
@@ -38,12 +38,13 @@ def review_creator_form(request):
             review.uploader = request.user
             review.save()
             return redirect('home')
-    return render(request, 'app/review_creator.html', context={'form': form})
+    return render(request, 'app/review_creator.html', context={'form': form})"""
 
 
 """Vue qui représente une seul review"""
 @login_required
-def view_review(request, review_id):
+def view_review(request, review_id, ):
+
     review = get_object_or_404(models.Review, id=review_id)
     return render(request, 'app/view_review.html', context={'review': review})
 
@@ -94,3 +95,34 @@ def edit_review(request, review_id):
                 'delete_form': delete_form
               }
     return render(request, 'app/edit_review.html', context=context)
+
+"""Vue de la création d'une review'"""
+@login_required
+def review_creator_form(request):
+    review_form = forms.ReviewForm()
+    ticket_form = forms.TicketForm()
+    if request.method == 'POST':
+        review_form = forms.ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.uploader = request.user
+            
+            review.save()
+            
+        if ticket_form.is_valid():
+            ticket = ticket_form.save(commit=False)
+            ticket.uploader = request.user
+            review.id = ticket.id
+            ticket.save()
+
+        return redirect('home')
+    return render(request, 'app/review_creator.html', context=
+                  {'ticket_form': ticket_form,'review_form': review_form})
+
+
+
+
+
+
+
+

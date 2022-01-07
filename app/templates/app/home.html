@@ -16,8 +16,21 @@
         <p><a href="{% url 'edit-ticket' ticket.id %}"> Edit/Supp</a></p>
         <p>------------------------------------</p>
     {% endfor %}
-
     <h2>Review</h2>
+    {% for review in reviews %}
+        <p><strong>Titre : </strong> {{ review.headline }}</p>
+        <p><strong>Critique : </strong> {{ review.content }}</p>
+        <p><strong>Recommandé : </strong> {{ review.rated }}</p>
+        <p><strong>review envoyé par : </strong> {{ review.uploader }}</p>
+        <p><strong>Date de création de la review : </strong> {{ review.date_created }}</p>
+        <p><a href="{% url 'view-review' review.id %}"><strong>Lire la review complète</strong></a></p>
+        <p>------------------------------------</p>
+    {% endfor %}
+
+
+{% endblock content %}
+
+    <!-- <h2>Review</h2>
     {% for review in reviews %}
         <p><strong> Nom du livre : </strong><a href="{% url 'view-review' review.id %}">{{ review.book_name|upper }}</a></p>
         <p><strong>Auteur : </strong> {{ review.author_book|upper }}</p>
@@ -27,6 +40,4 @@
         <p><strong>Date de création de la review : </strong> {{ review.date_created }}</p>
         <p><a href="{% url 'view-review' review.id %}"><strong>Lire la review complète</strong></a></p>
         <p>------------------------------------</p>
-    {% endfor %}
-
-{% endblock content %}
+    {% endfor %} -->

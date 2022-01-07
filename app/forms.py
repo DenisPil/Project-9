@@ -16,7 +16,7 @@ class ReviewForm(forms.ModelForm):
     edit_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     class Meta:
         model = models.Review
-        fields = ['book_name', 'author_book','content', 'advised']
+        fields = ['headline','content','rating' ]
 
 
 """Formulaire pour delete un Ticket"""
