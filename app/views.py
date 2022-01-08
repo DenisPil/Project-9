@@ -147,4 +147,4 @@ def unfollow_users(request, user_id):
         if form.is_valid():
             request.user.follows.remove(user)
             return redirect('home')
-    return render(request, 'app/unfollow_users_form.html', context={'form': form, 'user':user, "lol":user_id})
+    return render(request, 'app/unfollow_users_form.html', context={'form': form, 'user':user})
