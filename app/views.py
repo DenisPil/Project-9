@@ -3,14 +3,15 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
 from . import forms, models
-
+from authentication.models import User
 
 """Vue de la page d'acceuil"""
 @login_required
 def home(request):
     tickets = models.Ticket.objects.all()
     reviews = models.Review.objects.all()
-    return render(request, 'app/home.html', context={'tickets': tickets, 'reviews': reviews})
+    follower = request.user.follows.all()
+    return render(request, 'app/home.html', context={'tickets': tickets, 'reviews': reviews,"follower":follower})
 
 
 """Vue de la création de ticket"""
@@ -123,14 +124,34 @@ def ticket_reponse(request, ticket_id):
 
 
 """Vue qui permet de suivre un utilisateur"""
-def follow_users(request):
+"""def follow_users(request):
     form = forms.FollowUsersForm(instance=request.user)
     user = request.user
+    follower = user.follows.all()
     if request.method == 'POST':
         form = forms.FollowUsersForm(request.POST, instance=request.user)
         if form.is_valid():
             followers = form.save(commit=False)
             followers.save()
-            followers.follows.add(request.user, through_defaults={'user' : 'followed_user'})
+            followers.follows.add(request.user)
             return redirect('home')
-    return render(request,'app/follow_users_form.html', context={'form': form, 'user': user})
+    return render(request,'app/follow_users_form.html', context={'form': form, "follower":follower})"""
+@login_required
+def follow_users(request):
+    follow_form = forms.FollowUsersForm(instance=request.user)
+    unfollow_form = forms.FollowUsersForm(instance=request.user)
+    follower = request.user.follows.all()
+    p = len(follower)
+    if request.method == 'POST':
+        follow_form = forms.FollowUsersForm(request.POST, instance=request.user)
+        if follow_form.is_valid():
+            followers = follow_form.save(commit=False)
+            followers.save()
+            followers.follows.add(request.user)
+            return redirect('home')
+            """if unfollow_form.is_valid():
+            unfollow = follow_form.save(commit=False)
+            unfollow_form.delete()
+
+            return redirect('home')"""
+    return render(request, 'app/follow_users_form.html', context={'follow_form': follow_form, "follower":follower, 'p':p, 'unfollow_form':unfollow_form})

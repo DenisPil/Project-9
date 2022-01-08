@@ -4,7 +4,7 @@ from django.conf import settings
 
 """ Class qui représente les utilisateurs"""
 class User(AbstractUser):
-    follows = models.ManyToManyField(settings.AUTH_USER_MODEL, through='UserFollows', related_name='follower')
+    follows = models.ManyToManyField('self', through='UserFollows', related_name='followers', blank=True)
 
 
 class UserFollows(models.Model):

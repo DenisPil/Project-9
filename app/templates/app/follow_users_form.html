@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Suivre des utilisateurs</h2>
+
+    <h2>Ne plus suivre</h2>
     <form method="post">
-        {{ form.as_p }}
+        {{ unfollow_form.as_p }}
         {% csrf_token %}
         <button type="submit" >Confirmer</button>
     </form>
-    <p>followers : {{ user.follows}}</p>
+    <p> nb follow  {{p}}</p>
+    {% for i in follower %}
+    {{  i.username  }}
+    {{  i.id  }}
+    {{  i.email  }}
+    {% endfor %}
 {% endblock content %}
