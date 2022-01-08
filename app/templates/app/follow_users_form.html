@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+
+    <h2>Trouver un utilisateurs</h2>
+    <form method="post">
+        {{ find_user.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Confirmer</button>
+    </form>
+
     <h2>Suivre des utilisateurs</h2>
     <form method="post">
         {{ form.as_p }}

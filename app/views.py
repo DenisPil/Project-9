@@ -122,26 +122,37 @@ def ticket_reponse(request, ticket_id):
               }
     return render(request, 'app/ticket_reponse.html', context=context)
 
-""" Vue qui permet de suivre un utilisateur"""
+
+""" Vue qui permet de suivre un utilisateur ou de le trouver"""
 @login_required
 def follow_users(request):
+    find_user = forms.Findusers()
     form = forms.FollowUsersForm(instance=request.user)
     follower = request.user.follows.all()
+    all_users = User.objects.all()
+    print(all_users)
+
     if request.method == 'POST':
-        form = forms.FollowUsersForm(request.POST, instance=request.user)
-        if form.is_valid():
-            followers = form.save(commit=False)
-            followers.save()
-            request.user.follows.add(request.POST['follows'])
+        if 'add_follower' in request.POST:
+            form = forms.FollowUsersForm(request.POST, instance=request.user)
+            if form.is_valid():
+                followers = form.save(commit=False)
+                followers.save()
+                request.user.follows.add(request.POST['follows'])
+                return redirect('home')
+        if 'find_follower' in request.POST:
+            find_user = forms.Findusers(request.POST)
+            for i in all_users:
+                if request.POST['username'] == i.username:
+                    request.user.follows.add(i)
             return redirect('home')
-    return render(request, 'app/follow_users_form.html', context={'form': form,'follower':follower})
+    return render(request, 'app/follow_users_form.html', context={'form': form,'follower':follower, "find_user":find_user })
 
 
 """ Vue qui permet de ne plus suivre un utilisateur"""
 def unfollow_users(request, user_id):
     form = forms.DeleteFollowersForm()
     user = get_object_or_404(User, id=user_id)
-    print(user)
     if request.method == 'POST':
         form = forms.DeleteFollowersForm(request.POST)
         if form.is_valid():
