@@ -122,36 +122,29 @@ def ticket_reponse(request, ticket_id):
               }
     return render(request, 'app/ticket_reponse.html', context=context)
 
-
-"""Vue qui permet de suivre un utilisateur"""
-"""def follow_users(request):
+""" Vue qui permet de suivre un utilisateur"""
+@login_required
+def follow_users(request):
     form = forms.FollowUsersForm(instance=request.user)
-    user = request.user
-    follower = user.follows.all()
+    follower = request.user.follows.all()
     if request.method == 'POST':
         form = forms.FollowUsersForm(request.POST, instance=request.user)
         if form.is_valid():
             followers = form.save(commit=False)
             followers.save()
-            followers.follows.add(request.user)
+            request.user.follows.add(request.POST['follows'])
             return redirect('home')
-    return render(request,'app/follow_users_form.html', context={'form': form, "follower":follower})"""
-@login_required
-def follow_users(request):
-    follow_form = forms.FollowUsersForm(instance=request.user)
-    unfollow_form = forms.FollowUsersForm(instance=request.user)
-    follower = request.user.follows.all()
-    p = len(follower)
-    if request.method == 'POST':
-        follow_form = forms.FollowUsersForm(request.POST, instance=request.user)
-        if follow_form.is_valid():
-            followers = follow_form.save(commit=False)
-            followers.save()
-            followers.follows.add(request.user)
-            return redirect('home')
-            """if unfollow_form.is_valid():
-            unfollow = follow_form.save(commit=False)
-            unfollow_form.delete()
+    return render(request, 'app/follow_users_form.html', context={'form': form,'follower':follower})
 
-            return redirect('home')"""
-    return render(request, 'app/follow_users_form.html', context={'follow_form': follow_form, "follower":follower, 'p':p, 'unfollow_form':unfollow_form})
+
+""" Vue qui permet de ne plus suivre un utilisateur"""
+def unfollow_users(request, user_id):
+    form = forms.DeleteFollowersForm()
+    user = get_object_or_404(User, id=user_id)
+    print(user)
+    if request.method == 'POST':
+        form = forms.DeleteFollowersForm(request.POST)
+        if form.is_valid():
+            request.user.follows.remove(user)
+            return redirect('home')
+    return render(request, 'app/unfollow_users_form.html', context={'form': form, 'user':user, "lol":user_id})

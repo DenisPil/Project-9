@@ -34,6 +34,10 @@ class DeleteReviewForm(forms.Form):
 
 """Formulaire pour suivre un utilisateur"""
 class FollowUsersForm(forms.ModelForm):
+    
     class Meta:
         model = User
         fields = ['follows']
+
+class DeleteFollowersForm(forms.Form):
+    delete_follower = forms.BooleanField(widget=forms.HiddenInput, initial=True)

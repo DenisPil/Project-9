@@ -1,0 +1,14 @@
+{% block content %}
+<p>lol{{lol}}</p>
+<h3>Supprimer leeeeee follower ?</h3>
+
+    <form method="post">
+        {{ form }}
+        {% csrf_token %}
+        <button type="submit" >Supprimer</button>
+    </form>
+
+
+
+
+{% endblock content %}

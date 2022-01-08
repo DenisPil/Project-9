@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <p>Vous êtes connecté !</p>
+    <p>Vous êtes connecté ! {{user.username}} id : {{user.id}}</p>
     <p><a href="{% url 'ticket-creator' %}">Création d'un ticket</a></p>
     <p><a href="{% url 'review-creator' %}">Création d'une review</a></p>
     <h2>Ticket</h2>
