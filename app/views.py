@@ -1,19 +1,24 @@
+
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import Http404
+from django.db.models import Q
 
+from itertools import chain
 from . import forms, models
 from authentication.models import User
 
 """Vue de la page d'acceuil"""
 @login_required
 def home(request):
-    tickets = models.Ticket.objects.all()
-    reviews = models.Review.objects.all()
+    tickets = models.Ticket.objects.filter(uploader__in=request.user.follows.all())
+    reviews = models.Review.objects.filter(
+        Q(uploader__in=request.user.follows.all()) | Q(uploader_id= request.user.id))
     follower = request.user.follows.all()
-    return render(request, 'app/home.html', context={'tickets': tickets, 'reviews': reviews,"follower":follower})
+    ticket_and_reviews = sorted(chain(tickets,reviews), key=lambda instance: instance.date_created, reverse=True)
+    return render(request, 'app/home.html', context={'ticket_and_reviews':ticket_and_reviews,"follower":follower})
 
 
 """Vue de la création de ticket"""

@@ -1,0 +1,11 @@
+{% load app_extras %}
+
+<h2>Review</h2>
+    <p><strong>ID : </strong> {{ review.id }}</p>
+    <p><strong>Titre : </strong> {{ review.headline }}</p>
+    <p><strong>Critique : </strong> {{ review.content }}</p>
+    <p><strong>Recommandé : </strong> {{ review.ticket }}</p>review
+    <p><strong>review envoyé par : </strong> {% get_poster_display review.uploader %}</p>
+    <p><strong>Date de création de la review : </strong> {{ review.date_created }}</p>
+    <p><a href="{% url 'view-review' review.id %}"><strong>Lire la review complète</strong></a></p>
+    <p>------------------------------------</p>
