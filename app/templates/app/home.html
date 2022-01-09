@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 {% load app_extras %}
 {% block content %}
-    <p>Vous êtes connecté ! {{user.username}} id : {{user.id}}</p>
-    <p><a href="{% url 'ticket-creator' %}">Création d'un ticket</a></p>
-    <p><a href="{% url 'review-creator' %}">Création d'une review</a></p>
-    <h2> Votre Flux</h2>
-    {% for instance in page_obj %}
-        {% if instance|model_type == 'Ticket' %}
-            {% include "app/partials/ticket_snippet.html" with ticket=instance %}
-        {% elif instance|model_type == 'Review' %}
-        {% include "app/partials/review_snippet.html" with review=instance %}
+    <div class="create">
+        <p><a href="{% url 'ticket-creator' %}">Demander une critique</a></p>
+        <p><a href="{% url 'review-creator' %}">Créer une critique</a></p>
+    </div>
+    <div class="home">
+        <h2> Votre Flux</h2>
+        {% for instance in page_obj %}
+            {% if instance|model_type == 'Ticket' %}
+                {% include "app/partials/ticket_snippet.html" with ticket=instance %}
+            {% elif instance|model_type == 'Review' %}
+            {% include "app/partials/review_snippet.html" with review=instance %}
 
-        {% endif %}
-    {% endfor %}
-    {% include 'partials/page_navigator.html' %}
+            {% endif %}
+        {% endfor %}
+        {% include 'partials/page_navigator.html' %}
+    </div>
 {% endblock content %}
 
     <!--    

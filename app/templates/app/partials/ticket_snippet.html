@@ -1,18 +1,18 @@
 
 {% load app_extras %}
+<div class="ticket_flux">
+        <div class="uploader">{% get_poster_display ticket.uploader %} demande une critique</div>
+        <div class="date">{{ ticket.date_created }}</div>
+        <div class="titre">{{ ticket.headline }}</div>
+        <div class="livre">Livre :  {{ ticket.book_name }} - {{ ticket.author_book }} </div>
+        <div class="contenue">{{ ticket.content }}</div>
+        {% if ticket.image.url is not blank  %}
+            <img class='image' src="{{ ticket.image.url }}">
+        {% endif %}
+        <div class=><a href="{% url 'ticket-reponse' ticket.id %}">Donner son avis</a></div>
+        
+        {% if request.user == ticket.uploader %}
+            <div class=><a href="{% url 'edit-ticket' ticket.id %}"> Edit/Supp</a></div>
+        {% endif %}
 
-<h2>Ticket</h2>
-    <p><a href="{% url 'ticket-reponse' ticket.id %}">Donner son avis</a></p>
-    <p><strong> ID : </strong> {{ ticket.id }}</p>
-    <p><strong> Nom du livre : </strong> {{ ticket.book_name }}</p>
-    <p><strong>Auteur : </strong> {{ ticket.author_book }}</p>
-    <p><strong>Information voulu : </strong> {{ ticket.content }}</p>
-    {% if ticket.image.url is not blank  %}
-        <img src="{{ ticket.image.url }}">
-    {% endif %}
-    <p><strong>Ticket envoyé par : </strong> {% get_poster_display ticket.uploader %}</p>
-    <p><strong>Date de création du Ticket : </strong> {{ ticket.date_created }}</p>
-    {% if request.user == ticket.uploader %}
-        <p><a href="{% url 'edit-ticket' ticket.id %}"> Edit/Supp</a></p>
-    {% endif %}
-        <p>------------------------------------</p>
+</div>

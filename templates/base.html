@@ -1,15 +1,21 @@
+{% load static %}
+
 <html>
     <head>
         <title>LitReview</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
     </head>
     <body>
-        <h1>LitReview</h1>
-        <p><a href="{% url 'follow-users' %}">Suivre des utilisateurs</a></p>
-        <p>eze {{follower}}</p>
+        <div class="header">
+            <h1>LiteReview</h1>
+            {% if user.is_authenticated %}
+                <p><a href="{% url 'home' %}">Flux</a></p>
+                <p><a href="{% url 'follow-users' %}">Abonnements</a></p>
+                <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
+            {% endif %}
+        </div>
         {% block content %}{% endblock content %}
-        {% if user.is_authenticated %}
-            <p>bonjour {{ request.user }}. <a href="{% url 'logout' %}">Déconnection</a></p>
-        {% endif %}
-        <p><a href="{% url 'signup' %}">Inscrivez-vous maintenant !</a></p>    
+
+            
     </body>
 </html>
