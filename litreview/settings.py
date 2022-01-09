@@ -126,7 +126,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 """Je configure mon propre modèle d'utilisateur"""
 AUTH_USER_MODEL = 'authentication.User'
-
+TICKET_MODEL = 'app.Ticket'
 LOGIN_URL = 'login'
 
 LOGIN_REDIRECT_URL = "home"
