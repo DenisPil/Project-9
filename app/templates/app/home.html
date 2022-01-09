@@ -5,7 +5,7 @@
     <p><a href="{% url 'ticket-creator' %}">Création d'un ticket</a></p>
     <p><a href="{% url 'review-creator' %}">Création d'une review</a></p>
     <h2> Votre Flux</h2>
-    {% for instance in ticket_and_reviews %}
+    {% for instance in page_obj %}
         {% if instance|model_type == 'Ticket' %}
             {% include "app/partials/ticket_snippet.html" with ticket=instance %}
         {% elif instance|model_type == 'Review' %}
@@ -13,7 +13,7 @@
 
         {% endif %}
     {% endfor %}
-
+    {% include 'partials/page_navigator.html' %}
 {% endblock content %}
 
     <!--    

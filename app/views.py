@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import Http404
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 from itertools import chain
 from . import forms, models
@@ -17,8 +18,17 @@ def home(request):
     reviews = models.Review.objects.filter(
         Q(uploader__in=request.user.follows.all()) | Q(uploader_id= request.user.id))
     follower = request.user.follows.all()
-    ticket_and_reviews = sorted(chain(tickets,reviews), key=lambda instance: instance.date_created, reverse=True)
-    return render(request, 'app/home.html', context={'ticket_and_reviews':ticket_and_reviews,"follower":follower})
+    tickets_and_reviews = sorted(
+                                chain(tickets,reviews), 
+                                key=lambda instance: instance.date_created, 
+                                reverse=True
+                                )
+
+    paginator = Paginator(tickets_and_reviews, 2)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj, "follower":follower}
+    return render(request, 'app/home.html', context=context)
 
 
 """Vue de la création de ticket"""
