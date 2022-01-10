@@ -10,10 +10,11 @@ User = get_user_model()
 """Formulaire pour la création de nouveau ticket"""
 class TicketForm(forms.ModelForm):
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
     class Meta:
         model = models.Ticket
         fields = ['book_name','author_book', 'content', 'image']
-
+        widget = {'book_nasdme': forms.CharField(widget=forms.Textarea(attrs={'class': 'input-expand'}))}
 
 """Formulaire pour la création d'une review"""
 class ReviewForm(forms.ModelForm):

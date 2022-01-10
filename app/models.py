@@ -10,7 +10,7 @@ class Ticket(models.Model):
     book_name = models.CharField(max_length=256, verbose_name='Nom du livre')
     author_book = models.CharField(max_length=256, verbose_name='Auteur', blank=True)
     image = models.ImageField(null=True, blank=True)
-    content = models.CharField(max_length=2048, blank=True, verbose_name='Description')
+    content = models.TextField(max_length=2048, blank=True, verbose_name='Description')
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
 
@@ -30,7 +30,7 @@ class Ticket(models.Model):
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE, blank=True, null=True)
     headline = models.CharField(max_length=256, verbose_name='Titre de la Review')
-    content = models.CharField(max_length=8192, verbose_name='Votre avis')
+    content = models.TextField(max_length=8192, verbose_name='Votre avis')
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)])

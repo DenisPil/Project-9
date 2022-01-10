@@ -16,9 +16,6 @@ class SignupForm(UserCreationForm):
         model = get_user_model()
         fields = ('username', 'email', 'first_name', 'last_name')
 
-
-
-
 """ 
 
 widgets = {
