@@ -1,6 +1,6 @@
 
 {% load app_extras %}
-<div class="ticket_flux">
+
         <div class="uploader">{% get_poster_display ticket.uploader %} : demande une critique</div>
         <div class="date">{{ ticket.date_created }}</div>
         <div class="book">Livre :  {{ ticket.book_name }} - {{ ticket.author_book }} </div>
@@ -15,4 +15,3 @@
                 <div class="rep"><a href="{% url 'ticket-reponse' ticket.id %}">Répondre</a></div>
         </div>
 
-</div>

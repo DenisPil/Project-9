@@ -1,5 +1,5 @@
 {% load app_extras %}
-<div class="ticket_flux">
+<div class="ticket_for_review"> 
         <div class="uploader">{% get_poster_display ticket.uploader %} : demande une critique</div>
         <div class="date">{{ ticket.date_created }}</div>
         <div class="book">Livre :  {{ ticket.book_name }} - {{ ticket.author_book }} </div>
@@ -7,4 +7,4 @@
         {% if ticket.image.url is not blank  %}
             <img class='image' src="{{ ticket.image.url }}">
         {% endif %}
-</div>
+</div>         

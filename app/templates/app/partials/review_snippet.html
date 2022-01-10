@@ -1,21 +1,24 @@
 {% load app_extras %}
+<div class='uploader_r'>{% get_poster_display review.uploader %} : poste une critique</div>
+<div class='date_r'>{{ review.date_created }}</div>
+<div class='book_r'>{{ review.headline }}</div>
+<div class="stars">
+{% if review.rating == 1 %}
+    <p><strong>☆</strong></p>
+{% elif review.rating == 2  %}
+    <p><strong>☆☆</strong></p>
+{% elif review.rating == 3  %}
+    <p><strong>☆☆☆</strong></p>
+{% elif review.rating ==  4 %}
+    <p><strong>☆☆☆☆</strong></p>
+{% elif review.rating ==  5 %}
+    <p><strong>☆☆☆☆☆</strong></p>
+{% endif %}
+</div>
 
-<h2>Review</h2>
-    <div class='uploader_r'>{% get_poster_display review.uploader %} : poste une critique</div>
-    <div class='date_r'><strong>Date de création de la review : </strong> {{ review.date_created }}
-    <div class='book_r'>{{ review.headline }} - </div>
-    {% if review.rating == 1 %}
-        <p class='stars'><strong>☆</strong></p>
-      {% elif review.rating == 2  %}
-        <p class='stars'><strong>☆☆</strong></p>
-      {% elif review.rating == 3  %}
-        <p class='stars'><strong>☆☆☆</strong></p>
-      {% elif review.rating ==  4 %}
-        <p class='stars'><strong>☆☆☆☆</strong></p>
-      {% elif review.rating ==  5 %}
-        <p class='stars'><strong>☆☆☆☆☆</strong></p>
-    {% endif %}
-    <div class='content_r'><strong>Critique : </strong> {{ review.content }}</div>
-    <div class="ticket_r">{% include "app/partials/ticket_for_review_snippet.html" with ticket=review.ticket %}</div>
+<div class="ticket_r">{% include "app/partials/ticket_for_review_snippet.html" with ticket=review.ticket %}</div>
+<div class='content_r'><strong>Critique : </strong> {{ review.content }}</div>
+<div class='edit_review'><a href="{% url 'view-review' review.id %}">Edit</a></div>
+    
 
-    <div class=''><a href="{% url 'view-review' review.id %}"><strong>Lire la review complète</strong></a></div>
+
