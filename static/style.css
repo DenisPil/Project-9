@@ -1,6 +1,7 @@
 html {
     background-color: rgb(199, 197, 200);
     font-family: Arial;
+    font-size: 1.1em;
 }
 
 
@@ -231,7 +232,6 @@ body, html {
 
 .edit_review a{
     display: flex;
-
     align-items:   ;
     justify-content: center;
     color: #f1f1f1;
@@ -250,3 +250,39 @@ body, html {
     clear:both;
 }
 
+/* Page Abonnement */
+
+.find_user{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.find_user input{
+  height: 30px;
+  width: 200px;
+  margin-left:10px;
+}
+
+.find_user select{
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  margin-left:38px;
+  font-size: 1.5em;
+}
+
+.find_user label{ display: none; }
+
+.find_user a {
+    color: #f1f1f1;
+    background-color:rgb(57, 57, 58);
+    border: 1px black solid;
+    border-radius: 10px;
+    padding: 5px 65px;
+    margin:auto 5%;
+    cursor: pointer;
+    text-align: center;
+    position:  relative;
+    right:-40%;
+}

@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="find_user">
     <h2>Trouver un utilisateurs</h2>
-    <form method="post">
-        {{ find_user.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Confirmer</button>
-    </form>
+    
+        <form class="mabite" method="post">
+            {{ find_user.as_p }}
+            {% csrf_token %}
+            <button type="submit" >Confirmer</button>
+        </form>
 
     <h2>Suivre des utilisateurs</h2>
     <form method="post">
@@ -14,13 +15,11 @@
         {% csrf_token %}
         <button type="submit" >Confirmer</button>
 
-    <p> nb follow  {{p}}</p>
+    <h2> Vos abonnement</h2>
     {% for i in follower %}
-        <a href="{% url 'unfollow-users' i.id %}"> STOP</a>
-        <p>{{  i.username  }}</p>
-        <p>{{  i.email  }}</p>
-        <p>--------------------------------</p>
+    <p><strong>{{i.username|upper}}</strong><a href="{% url 'unfollow-users' i.id %}">Désabonner</a></p>
     {% endfor %}
+</div>
 {% endblock content %}
 
-<!-- <a href="{% url 'unfollow-users' i.id  %}">Clic pour ne plus suivre</a> -->
+<!-- <a href="{% url 'unfollow-users' i.id  %}">Clic pour ne plus suivre</a> -->$

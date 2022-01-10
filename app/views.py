@@ -45,7 +45,6 @@ def ticket_creator_form(request):
             ticket.uploader = request.user
             ticket.save()
             request.user.ticket_uploaded = ticket
-            print("___________________________________",request.user.ticket_uploaded == ticket, "___________________________________")
             return redirect('home')
     return render(request, 'app/ticket_creator.html', context={'form': form})
 
@@ -158,8 +157,14 @@ def follow_users(request):
     form = forms.FollowUsersForm(instance=request.user)
     follower = request.user.follows.all()
     all_users = User.objects.all()
-    print(all_users)
-
+    """    for i in all_users:
+        gg = i.follows.all()
+        print("utilisateur :",i.username," amis :", gg)
+        for f in gg:
+            if f != request.user:
+                print(f,"follower")
+        else:
+            pass"""
     if request.method == 'POST':
         if 'add_follower' in request.POST:
             form = forms.FollowUsersForm(request.POST, instance=request.user)
@@ -174,7 +179,7 @@ def follow_users(request):
                 if request.POST['username'] == i.username:
                     request.user.follows.add(i)
             return redirect('home')
-    return render(request, 'app/follow_users_form.html', context={'form': form,'follower':follower, "find_user":find_user })
+    return render(request, 'app/follow_users_form.html', context={'form': form,'follower':follower, "find_user":find_user})
 
 
 """ Vue qui permet de ne plus suivre un utilisateur"""
