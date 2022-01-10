@@ -1,8 +1,9 @@
 html {
     background-color: rgb(199, 197, 200);
     font-family: Arial;
-
 }
+
+
 body, html {
     margin: 0;
     padding: 0;
@@ -19,6 +20,7 @@ body, html {
     height: 10%;
 }
 
+
 .header h1 {
     color: #ffffe6;
     flex-direction: row;
@@ -28,6 +30,7 @@ body, html {
     margin-left: 45%;
 }
 
+
 .header a {
     text-decoration: none;
     color:  #ffffe6;
@@ -36,9 +39,11 @@ body, html {
     margin-top: 15px;
 }
 
+
 .header a:hover {
     color: #f1f1f1;
 }
+
 
 /* LOGIN.html */
 .login {
@@ -50,12 +55,14 @@ body, html {
     align-items: center;
   }
 
+
 .login p {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 
 .login a, button {
     color: #f1f1f1;
@@ -71,6 +78,7 @@ body, html {
     position: relative;
     text-decoration: none;
     }
+
 
 .login a:hover {
     color: #f1f1f1;
@@ -88,6 +96,7 @@ body, html {
     margin-top: 10px;
     padding-top: 15px;
 }
+
 
 .signup span {
     color: rgb(199, 197, 200)
@@ -114,12 +123,14 @@ body, html {
     text-decoration: none;
 }
 
+
 .ticket_flux{
     border: 2px black solid;
     width:70%;
     margin-left:17%;
     height:400
 }
+
 
 .date, .date_r{
     font-size: 0.8em;
@@ -128,20 +139,24 @@ body, html {
     margin-top: -12px;
 }
 
+
 .image{
     padding-left: 3%;
     margin-top: 15px
 }
+
 
 .uploader, .book, .content{
     padding-left: 1%;
     padding-top: 1%;
 }
 
+
 #box-ticket{
     display: flex;
     flex-direction: row;
 }
+
 
 .ticket_flux a{
     display: flex;
@@ -161,11 +176,12 @@ body, html {
     font-size: 0.8 em;
 }
 
+
 .rep {
     position:absolute;
     right: 16%;
-
 }
+
 
 .edit {
     position:absolute;
@@ -174,11 +190,11 @@ body, html {
     margin-top: 1%;
 }
 
+
 .stars{
     color: #FFD700;
     position:relative;
     top:-2%;
-
 }
 
 
@@ -200,15 +216,19 @@ body, html {
     height:600px;
 }
 
+
 .stars, .uploader_r, .book_r, .content_r{
     padding-left: 1%;
     padding-top: 1%;
 }
 
+
 .content_r{
     margin-right:33px;
     text-align:justify
 }
+
+
 .edit_review a{
     display: flex;
 
@@ -229,4 +249,4 @@ body, html {
     text-decoration: dashed;
     clear:both;
 }
-}
+
