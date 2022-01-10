@@ -1,14 +1,12 @@
+{% extends 'base.html' %}
 {% block content %}
 
-<h3>Supprimer le follower ?</h3>
+<h2>Se désabonner de {{user}} ?</h2>
 
     <form method="post">
         {{ form }}
         {% csrf_token %}
-        <button type="submit" >Supprimer</button>
+        <button type="submit" >Désabonner</button>
     </form>
-
-
-
 
 {% endblock content %}
