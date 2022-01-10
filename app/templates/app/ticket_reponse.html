@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="ticket_reponse">
     <h2>Critique</h2>
-    <p> {{ ticket.book_name }}</p>
-    <p> {{ ticket.author_book }}</p>
-    <p> {{ ticket.content }}</p>
-        <p> {{ ticket.uploarder }}</p>
+    <div class="ticket_r">{% include "app/partials/ticket_for_review_snippet.html" with ticket=ticket %}</div>
     <form method="post" enctype="multipart/form-data">
         {{ review_form.as_p }}
         {% csrf_token %}
         <button type="submit" >Publier</button>
     </form>
+</div>
 {% endblock content %}

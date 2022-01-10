@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<div class="review_creator">
+    <div class="ticket_r">{% include "app/partials/ticket_for_review_snippet.html" with ticket=review.ticket %}</div>
     <h2>Modifier le ticket</h2>
     <form method="post">
         {{ edit_form.as_p }}
         {% csrf_token %}
         <button type="submit" >Sauvegarder</button>
     </form>
+
     <hr>
     <h3>Supprimer le ticket ?</h3>
     <form method="post">
@@ -13,4 +17,5 @@
         {% csrf_token %}
         <button type="submit" >Supprimer</button>
     </form>
+</div>
 {% endblock content %}

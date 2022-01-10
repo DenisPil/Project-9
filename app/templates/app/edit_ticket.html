@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="ticket_creator">
     <h2>Modifier le ticket</h2>
     <form method="post" enctype="multipart/form-data">
         {{ edit_form.as_p }}
+        {% for field in form.hidden_fields %}
+        {{ field }} 
+    {% endfor %}
+
+    {% for field in form.visible_fields %}
+        {{ field.label }} {{ field }}
+    {% endfor %}
         {% csrf_token %}
+        <p><img class='image' src="{{ ticket.image.url }}"></p> 
         <button type="submit" >Sauvegarder</button>
     </form>
     <hr>
@@ -13,4 +22,5 @@
         {% csrf_token %}
         <button type="submit" >Supprimer</button>
     </form>
+</div>
 {% endblock content %}

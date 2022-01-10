@@ -18,7 +18,9 @@
 
 <div class="ticket_r">{% include "app/partials/ticket_for_review_snippet.html" with ticket=review.ticket %}</div>
 <div class='content_r'><strong>Critique : </strong> {{ review.content }}</div>
-<div class='edit_review'><a href="{% url 'view-review' review.id %}">Edit</a></div>
+{% if review.uploader == request.user %}
+    <div class='edit_review'><a href="{% url 'edit-review' review.id %}">Edit</a></div>
+{% endif %}
     
 
 

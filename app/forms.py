@@ -1,8 +1,6 @@
 from django.contrib.auth import get_user_model
 from django import forms
 
-
-
 from . import models
 
 User = get_user_model()
@@ -13,8 +11,11 @@ class TicketForm(forms.ModelForm):
 
     class Meta:
         model = models.Ticket
-        fields = ['book_name','author_book', 'content', 'image']
-        widget = {'book_nasdme': forms.CharField(widget=forms.Textarea(attrs={'class': 'input-expand'}))}
+        fields = ['book_name','author_book', 'content']
+        labels = {'image': ''}
+ 
+    
+
 
 """Formulaire pour la création d'une review"""
 class ReviewForm(forms.ModelForm):

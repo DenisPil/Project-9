@@ -97,7 +97,8 @@ def edit_ticket(request, ticket_id):
                     return redirect('home')
         context = {
                     'edit_form': edit_form,
-                    'delete_form': delete_form
+                    'delete_form': delete_form,
+                    'ticket': ticket
                 }
     else:
         raise Http404
@@ -124,7 +125,8 @@ def edit_review(request, review_id):
                     return redirect('home')
         context = {
                     'edit_form': edit_form,
-                    'delete_form': delete_form
+                    'delete_form': delete_form,
+                    'review':review
                 }
     else:
         raise Http404
@@ -135,6 +137,7 @@ def edit_review(request, review_id):
 def ticket_reponse(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id= ticket_id)
     review_form = forms.ReviewForm()
+    
     if request.method == 'POST':
         review_form = forms.ReviewForm(request.POST)
         if review_form.is_valid():
