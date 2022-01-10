@@ -24,7 +24,7 @@ def home(request):
                                 reverse=True
                                 )
 
-    paginator = Paginator(tickets_and_reviews, 2)
+    paginator = Paginator(tickets_and_reviews, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {'page_obj': page_obj, "follower":follower}

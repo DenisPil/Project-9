@@ -117,23 +117,59 @@ body, html {
 .ticket_flux{
     border: 2px black solid;
     width:70%;
-    margin-left:17%
+    margin-left:17%;
+    height:400
 }
 
 .date{
     font-size: 0.8em;
     text-align: right;
-    padding-right: 10%;
+    padding-right: 7%;
     margin-top: -12px;
 }
 
 .image{
-    padding-left: 10%;
-    margin-top: 5px
+    padding-left: 3%;
+    margin-top: 15px
 }
 
-.uploader, .title, .book, .content{
+.uploader, .book, .content{
     padding-left: 1%;
     padding-top: 1%;
 }
 
+#box-ticket{
+    display: flex;
+    flex-direction: row;
+}
+
+.ticket_flux a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #f1f1f1;
+    background-color:rgb(57, 57, 58);
+    background-attachment: fixed;
+    border: 1px black solid;
+    border-radius: 10px;
+    padding:5px 40px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    font-size: 0.8 em;
+}
+
+.rep {
+    position:absolute;
+    right: 16%;
+
+}
+
+.edit {
+    position:absolute;
+    margin-left:3% ;
+
+    margin-top: 1%;
+}

@@ -9,7 +9,6 @@ from PIL import Image
 class Ticket(models.Model):
     book_name = models.CharField(max_length=256, verbose_name='Nom du livre')
     author_book = models.CharField(max_length=256, verbose_name='Auteur', blank=True)
-    headline = models.CharField(max_length=256, verbose_name='Titre', blank=True)
     image = models.ImageField(null=True, blank=True)
     content = models.CharField(max_length=2048, blank=True, verbose_name='Description')
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

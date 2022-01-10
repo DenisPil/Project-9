@@ -1,18 +1,18 @@
 
 {% load app_extras %}
 <div class="ticket_flux">
-        <div class="uploader">{% get_poster_display ticket.uploader %} demande une critique</div>
+        <div class="uploader">{% get_poster_display ticket.uploader %} : demande une critique</div>
         <div class="date">{{ ticket.date_created }}</div>
-        <div class="title">{{ ticket.headline }}</div>
         <div class="book">Livre :  {{ ticket.book_name }} - {{ ticket.author_book }} </div>
         <div class="content">{{ ticket.content }}</div>
         {% if ticket.image.url is not blank  %}
             <img class='image' src="{{ ticket.image.url }}">
         {% endif %}
-        <div class=><a href="{% url 'ticket-reponse' ticket.id %}">Donner son avis</a></div>
-        
-        {% if request.user == ticket.uploader %}
-            <div class=><a href="{% url 'edit-ticket' ticket.id %}"> Edit/Supp</a></div>
-        {% endif %}
+        <div id ="box-ticket">
+            {% if request.user == ticket.uploader %}
+                <div class="edit"><a href="{% url 'edit-ticket' ticket.id %}"> Edit</a></div>
+            {% endif %}
+                <div class="rep"><a href="{% url 'ticket-reponse' ticket.id %}">Répondre</a></div>
+        </div>
 
 </div>
