@@ -7,6 +7,8 @@ body, html {
     margin: 0;
     padding: 0;
   }
+
+
 /* BASE.html */
 .header {
     background-color:rgb(57, 57, 58);
@@ -55,7 +57,6 @@ body, html {
     justify-content: center;
 }
 
-
 .login a, button {
     color: #f1f1f1;
     background-color:rgb(57, 57, 58);
@@ -75,6 +76,7 @@ body, html {
     color: #f1f1f1;
 }
 
+
 /* SIGNUP.html */
 
 .signup p, button, h2 {
@@ -90,6 +92,7 @@ body, html {
 .signup span {
     color: rgb(199, 197, 200)
 }
+
 
 /* HOME.html */
 
@@ -109,7 +112,8 @@ body, html {
     text-align: center;
     position: relative;
     text-decoration: none;
-    }
+}
+
 .ticket_flux{
     border: 2px black solid;
     width:70%;
@@ -120,13 +124,16 @@ body, html {
     font-size: 0.8em;
     text-align: right;
     padding-right: 10%;
-    margin-top: -12
+    margin-top: -12px;
 }
 
 .image{
     padding-left: 10%;
+    margin-top: 5px
 }
-.uploader{
+
+.uploader, .title, .book, .content{
     padding-left: 1%;
     padding-top: 1%;
 }
+

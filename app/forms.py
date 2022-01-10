@@ -12,7 +12,7 @@ class TicketForm(forms.ModelForm):
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     class Meta:
         model = models.Ticket
-        fields = ['book_name','author_book', 'content', 'image']
+        fields = ['book_name','author_book', 'headline', 'content', 'image']
 
 
 """Formulaire pour la création d'une review"""
