@@ -35,11 +35,21 @@ $ source <le nom de l'environnement>/bin/activate
 $ pip install -r requirements.txt
 ````
 
-### 4- Une fois l'environnement créé et activé, il faut activer le serveur.
+### 4- Une fois l'environnement créé et activé, il faut activer le serveur de développement.
 *  À partir d'un terminal la première étape est d'exécuter le serveur.
 *  Ce rendre a la racine du projet et rentrer la commande suivante:
 ````
 $ python manage.py runserver
 ````
-* Le serveur est activé, ce rendre a l'adresse suivante: http://127.0.0.1:8000/
+* Le serveur est activé, ce rendre à l'adresse suivante: http://127.0.0.1:8000/
+
+### 5- Ce connecter avec le compte admin.
+* ce rendre à l'adresse http://127.0.0.1:8000/admin
+* Nom d'utilisateur : admin
+* Mot de passe : admin1
+* Permet de controler les informations suivante de la base de donnée. Pouvoir effectuer les opérations CRUD sur les éléments suivant:
+  * Utilisateurs
+  * Reviews
+  * Tickets 
+
 
