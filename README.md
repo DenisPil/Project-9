@@ -43,7 +43,7 @@ $ python manage.py runserver
 ````
 * Le serveur est activé, ce rendre à l'adresse suivante: http://127.0.0.1:8000/
 
-### 5- Ce connecter avec le compte admin.
+### 5- Se connecter avec le compte admin.
 * ce rendre à l'adresse http://127.0.0.1:8000/admin
 * Nom d'utilisateur : admin
 * Mot de passe : admin1
