@@ -47,7 +47,7 @@ $ python manage.py runserver
 * se rendre à l'adresse http://127.0.0.1:8000/admin
 * Nom d'utilisateur : admin
 * Mot de passe : admin1
-* Permet de controler les informations suivante de la base de donnée. Pouvoir effectuer les opérations CRUD sur les éléments suivant:
+* Permet de controler les informations de la base de donnée. Pouvoir effectuer les opérations CRUD sur les éléments suivant:
   * Utilisateurs
   * Reviews
   * Tickets 
