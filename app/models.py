@@ -20,7 +20,7 @@ class Ticket(models.Model):
         image = Image.open(self.image)
         image.thumbnail(self.IMAGE_MAX_SIZE)
         image.save(self.image.path)
-        
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.resize_image()
@@ -35,6 +35,3 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)])
     date_created = models.DateTimeField(auto_now_add=True)
-
-
-

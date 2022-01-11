@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
 
 
 """Formulaire de login"""
@@ -15,11 +14,3 @@ class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = ('username', 'email', 'first_name', 'last_name')
-
-""" 
-
-widgets = {
-            'username': forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}),
-
-        }
-"""

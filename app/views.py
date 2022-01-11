@@ -17,31 +17,26 @@ from authentication.models import User
 def home(request):
     tickets = models.Ticket.objects.filter(uploader__in=request.user.follows.all())
     reviews = models.Review.objects.filter(
-        Q(uploader__in=request.user.follows.all())|Q(uploader__in=request.user.followeds_by.all()))
+        Q(uploader__in=request.user.follows.all()) | Q(uploader__in=request.user.followeds_by.all()))
     follower = request.user.follows.all()
-    tickets_and_reviews = sorted(
-                                chain(tickets,reviews), 
-                                key=lambda instance: instance.date_created, 
-                                reverse=True
-                                )
+    tickets_and_reviews = sorted(chain(tickets, reviews),
+                                 key=lambda instance: instance.date_created,
+                                 reverse=True)
     paginator = Paginator(tickets_and_reviews, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {'page_obj': page_obj, "follower":follower}
+    context = {'page_obj': page_obj, "follower": follower}
     return render(request, 'app/home.html', context=context)
 
 
 """ Vue de la page post qui représente les ticket et review de l'utilisateur"""
 @login_required
 def post(request):
-    tickets = models.Ticket.objects.filter(Q(uploader_id= request.user.id))
-    reviews = models.Review.objects.filter(Q(uploader_id= request.user.id))
-    tickets_and_reviews = sorted(
-                                chain(tickets,reviews), 
-                                key=lambda instance: instance.date_created, 
-                                reverse=True
-                                )
-
+    tickets = models.Ticket.objects.filter(Q(uploader_id=request.user.id))
+    reviews = models.Review.objects.filter(Q(uploader_id=request.user.id))
+    tickets_and_reviews = sorted(chain(tickets, reviews),
+                                 key=lambda instance: instance.date_created,
+                                 reverse=True)
     paginator = Paginator(tickets_and_reviews, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -81,8 +76,8 @@ def review_creator_form(request):
             review.ticket = ticket
             review.save()
         return redirect('home')
-    return render(request, 'app/review_creator.html', context=
-                  {'ticket_form': ticket_form,'review_form': review_form})
+    context = {'ticket_form': ticket_form, 'review_form': review_form}
+    return render(request, 'app/review_creator.html', context=context)
 
 
 """Vue qui modofie ou supprime un ticket"""
@@ -103,11 +98,9 @@ def edit_ticket(request, ticket_id):
                 if delete_form.is_valid():
                     ticket.delete()
                     return redirect('home')
-        context = {
-                    'edit_form': edit_form,
-                    'delete_form': delete_form,
-                    'ticket': ticket
-                }
+        context = {'edit_form': edit_form,
+                   'delete_form': delete_form,
+                   'ticket': ticket}
     else:
         raise Http404
     return render(request, 'app/edit_ticket.html', context=context)
@@ -131,11 +124,9 @@ def edit_review(request, review_id):
                 if delete_form.is_valid():
                     review.delete()
                     return redirect('home')
-        context = {
-                    'edit_form': edit_form,
-                    'delete_form': delete_form,
-                    'review':review
-                }
+        context = {'edit_form': edit_form,
+                   'delete_form': delete_form,
+                   'review': review}
     else:
         raise Http404
     return render(request, 'app/edit_review.html', context=context)
@@ -144,9 +135,8 @@ def edit_review(request, review_id):
 """Vue qui représente la réponse a un ticket"""
 @login_required
 def ticket_reponse(request, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id= ticket_id)
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
     review_form = forms.ReviewForm()
-    
     if request.method == 'POST':
         review_form = forms.ReviewForm(request.POST)
         if review_form.is_valid():
@@ -155,10 +145,8 @@ def ticket_reponse(request, ticket_id):
             review.ticket = ticket
             review.save()
             return redirect('home')
-    context = {
-                'ticket': ticket,
-                'review_form': review_form
-              }
+    context = {'ticket': ticket,
+               'review_form': review_form}
     return render(request, 'app/ticket_reponse.html', context=context)
 
 
@@ -184,7 +172,8 @@ def follow_users(request):
                 if request.POST['username'] == i.username:
                     request.user.follows.add(i)
             return redirect('home')
-    return render(request, 'app/follow_users_form.html', context={'form': form,'follower':follower, "find_user":find_user, 'folowed_by':folowed_by})
+    context = {'form': form, 'follower': follower, "find_user": find_user, 'folowed_by': folowed_by}
+    return render(request, 'app/follow_users_form.html', context=context)
 
 
 """ Vue qui permet de ne plus suivre un utilisateur"""
@@ -199,4 +188,4 @@ def unfollow_users(request, user_id):
         if form.is_valid():
             request.user.follows.remove(user)
             return redirect('home')
-    return render(request, 'app/unfollow_users_form.html', context={'form': form, 'user':user})
+    return render(request, 'app/unfollow_users_form.html', context={'form': form, 'user': user})
