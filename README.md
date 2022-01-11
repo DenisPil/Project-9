@@ -29,7 +29,7 @@ $ <le nom de l'environnement>/Scripts.activate
 $ source <le nom de l'environnement>/bin/activate
 ````
 
-### 3- La dernière étape est l'installation des packages. Les packages sont référencés dans le fichier
+### 3- La dernière étape est l'installation des packages. Les packages sont référencés dans le fichier.
 *  requirements.txt. Entrer la commande suivante pour installer tous les packages.
 ````
 $ pip install -r requirements.txt
@@ -37,17 +37,17 @@ $ pip install -r requirements.txt
 
 ### 4- Une fois l'environnement créé et activé, il faut activer le serveur de développement.
 *  À partir d'un terminal la première étape est d'exécuter le serveur.
-*  Ce rendre a la racine du projet et rentrer la commande suivante:
+*  Se rendre à la racine du projet et rentrer la commande suivante :
 ````
 $ python manage.py runserver
 ````
-* Le serveur est activé, se rendre à l'adresse suivante: http://127.0.0.1:8000/
+* Le serveur est activé, se rendre à l'adresse suivante : http://127.0.0.1:8000/
 
 ### 5- Se connecter avec le compte admin.
-* se rendre à l'adresse http://127.0.0.1:8000/admin
+* se rendre à l'adresse : http://127.0.0.1:8000/admin
 * Nom d'utilisateur : admin
 * Mot de passe : admin1
-* Permet de controler les informations de la base de donnée. Pouvoir effectuer les opérations CRUD sur les éléments suivant:
+* Permet de contrôler les informations de la base de donnée. Pouvoir effectuer les opérations CRUD sur les éléments suivants :
   * Utilisateurs
   * Reviews
   * Tickets 
