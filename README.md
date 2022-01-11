@@ -1,6 +1,6 @@
 # Programme LitReview.
 
-<img src="https://user.oc-static.com/upload/2020/09/18/16004297044411_P7.png" width="15%"></img>
+<img src="https://user.oc-static.com/upload/2020/09/18/16004297044411_P7.png" width="25%"></img>
 
 ## Pour utiliser ce programme il faut commencer par installer l'environnement virtuel.
 
