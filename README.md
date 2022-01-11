@@ -36,5 +36,9 @@ $ source <le nom de l'environnement>/bin/activate
 ````
 
 ### Une fois l'environnement créé et activé, lancer le fichier main.py.
-*  À partir d'un terminal pour lancer le fichier vous pouvez rentrer la commande :
-*  $ python3 main.py
+*  À partir d'un terminal la première étape est d'exécuter le serveur.
+*  Ce rendre a la racine du projet et rentrer la commande suivante:
+````
+   $ python manage.py runserver
+````
+
