@@ -11,10 +11,8 @@ class TicketForm(forms.ModelForm):
 
     class Meta:
         model = models.Ticket
-        fields = ['book_name','author_book', 'content']
-        labels = {'image': ''}
- 
-    
+        fields = ['book_name','author_book', 'content', 'image']
+
 
 
 """Formulaire pour la création d'une review"""
@@ -48,3 +46,10 @@ class DeleteFollowersForm(forms.Form):
 class Findusers(forms.Form):
     find_follower = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     username = forms.CharField(max_length=128)
+    
+class TicketEditForm(forms.ModelForm):
+    edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+    class Meta:
+        model = models.Ticket
+        fields = ['book_name','author_book', 'content']

@@ -16,7 +16,7 @@ from authentication.models import User
 def home(request):
     tickets = models.Ticket.objects.filter(uploader__in=request.user.follows.all())
     reviews = models.Review.objects.filter(
-        Q(uploader__in=request.user.follows.all()) | Q(uploader_id= request.user.id))
+        Q(uploader__in=request.user.follows.all())|Q(uploader__in=request.user.followeds_by.all()))
     follower = request.user.follows.all()
     tickets_and_reviews = sorted(
                                 chain(tickets,reviews), 
@@ -90,12 +90,12 @@ def review_creator_form(request):
 @login_required
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    edit_form = forms.TicketForm(instance=ticket)
+    edit_form = forms.TicketEditForm(instance=ticket)
     delete_form = forms.DeleteTicketForm()
     if ticket.uploader == request.user:
         if request.method == 'POST':
             if 'edit_ticket' in request.POST:
-                edit_form = forms.TicketForm(request.POST, instance=ticket)
+                edit_form = forms.TicketEditForm(request.POST, instance=ticket)
                 if edit_form.is_valid():
                     edit_form.save()
                     return redirect('home')
@@ -170,14 +170,6 @@ def follow_users(request):
     form = forms.FollowUsersForm(instance=request.user)
     follower = request.user.follows.all()
     all_users = User.objects.all()
-    """    for i in all_users:
-        gg = i.follows.all()
-        print("utilisateur :",i.username," amis :", gg)
-        for f in gg:
-            if f != request.user:
-                print(f,"follower")
-        else:
-            pass"""
     if request.method == 'POST':
         if 'add_follower' in request.POST:
             form = forms.FollowUsersForm(request.POST, instance=request.user)
@@ -199,6 +191,8 @@ def follow_users(request):
 @login_required
 def unfollow_users(request, user_id):
     form = forms.DeleteFollowersForm()
+    follower = request.user.follows.all()
+    ff = request.user.followeds_by.all()
     user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
         form = forms.DeleteFollowersForm(request.POST)
