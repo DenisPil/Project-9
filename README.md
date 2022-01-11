@@ -35,11 +35,11 @@ $ source <le nom de l'environnement>/bin/activate
 $ pip install -r requirements.txt
 ````
 
-### Une fois l'environnement créé et activé, lancer le fichier main.py.
+### 4- Une fois l'environnement créé et activé, il faut activer le serveur.
 *  À partir d'un terminal la première étape est d'exécuter le serveur.
 *  Ce rendre a la racine du projet et rentrer la commande suivante:
 ````
 $ python manage.py runserver
 ````
-* Le serveur une fois activé, ce rendre a l'adresse suivante: http://127.0.0.1:8000/
+* Le serveur est activé, ce rendre a l'adresse suivante: http://127.0.0.1:8000/
 
