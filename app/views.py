@@ -11,6 +11,7 @@ from itertools import chain
 from . import forms, models
 from authentication.models import User
 
+
 """Vue de la page d'acceuil"""
 @login_required
 def home(request):
@@ -23,13 +24,14 @@ def home(request):
                                 key=lambda instance: instance.date_created, 
                                 reverse=True
                                 )
-
     paginator = Paginator(tickets_and_reviews, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {'page_obj': page_obj, "follower":follower}
     return render(request, 'app/home.html', context=context)
 
+
+""" Vue de la page post qui représente les ticket et review de l'utilisateur"""
 @login_required
 def post(request):
     tickets = models.Ticket.objects.filter(Q(uploader_id= request.user.id))
@@ -46,6 +48,7 @@ def post(request):
     context = {'page_obj': page_obj}
     return render(request, 'app/post.html', context=context)
 
+
 """Vue de la création de ticket"""
 @login_required
 def ticket_creator_form(request):
@@ -54,7 +57,6 @@ def ticket_creator_form(request):
         form = forms.TicketForm(request.POST, request.FILES)
         if form.is_valid():
             ticket = form.save(commit=False)
-
             ticket.uploader = request.user
             ticket.save()
             request.user.ticket_uploaded = ticket
@@ -81,9 +83,6 @@ def review_creator_form(request):
         return redirect('home')
     return render(request, 'app/review_creator.html', context=
                   {'ticket_form': ticket_form,'review_form': review_form})
-
-
-
 
 
 """Vue qui modofie ou supprime un ticket"""
@@ -169,6 +168,7 @@ def follow_users(request):
     find_user = forms.Findusers()
     form = forms.FollowUsersForm(instance=request.user)
     follower = request.user.follows.all()
+    folowed_by = request.user.followeds_by.all()
     all_users = User.objects.all()
     if request.method == 'POST':
         if 'add_follower' in request.POST:
@@ -184,7 +184,7 @@ def follow_users(request):
                 if request.POST['username'] == i.username:
                     request.user.follows.add(i)
             return redirect('home')
-    return render(request, 'app/follow_users_form.html', context={'form': form,'follower':follower, "find_user":find_user})
+    return render(request, 'app/follow_users_form.html', context={'form': form,'follower':follower, "find_user":find_user, 'folowed_by':folowed_by})
 
 
 """ Vue qui permet de ne plus suivre un utilisateur"""

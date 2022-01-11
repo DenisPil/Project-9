@@ -17,7 +17,11 @@
 
     <h2> Vos abonnement</h2>
     {% for i in follower %}
-    <p><strong>{{i.username|upper}}</strong><a href="{% url 'unfollow-users' i.id %}">Désabonner</a></p>
+    <p><strong>{{i.username}}</strong><a href="{% url 'unfollow-users' i.id %}">Désabonner</a></p>
+    {% endfor %}
+    <h2> Abonnés</h2>
+    {% for i in folowed_by %}
+    <p><strong>{{i.username}}</strong></p>
     {% endfor %}
 </div>
 {% endblock content %}
