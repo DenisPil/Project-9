@@ -18,22 +18,26 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 import authentication.views
-import app.views
+import app.views.flux
+import app.views.review
+import app.views.ticket
+import app.views.user
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', authentication.views.login_page, name='login'),
     path('logout/', authentication.views.logout_user, name='logout'),
-    path('home/', app.views.home, name='home'),
+    path('home/', app.views.flux.home, name='home'),
     path('signup/', authentication.views.signup_page, name='signup'),
-    path('ticket_creator/', app.views.ticket_creator_form, name='ticket-creator'),
-    path('review_creator/', app.views.review_creator_form, name='review-creator'),
-    path('post/', app.views.post, name='post'),
-    path('edit_ticket/<int:ticket_id>/', app.views.edit_ticket, name='edit-ticket'),
-    path('edit_review/<int:review_id>/', app.views.edit_review, name='edit-review'),
-    path('ticket/<int:ticket_id>/reponse/', app.views.ticket_reponse, name='ticket-reponse'),
-    path('follow-users/', app.views.follow_users, name='follow-users'),
-    path('unfollow-users/<int:user_id>/', app.views.unfollow_users, name='unfollow-users'),
+    path('ticket_creator/', app.views.ticket.ticket_creator_form, name='ticket-creator'),
+    path('review_creator/', app.views.review.review_creator_form, name='review-creator'),
+    path('post/', app.views.flux.post, name='post'),
+    path('edit_ticket/<int:ticket_id>/', app.views.ticket.edit_ticket, name='edit-ticket'),
+    path('edit_review/<int:review_id>/', app.views.review.edit_review, name='edit-review'),
+    path('ticket/<int:ticket_id>/reponse/', app.views.ticket.ticket_reponse, name='ticket-reponse'),
+    path('follow-users/', app.views.user.follow_users, name='follow-users'),
+    path('unfollow-users/<int:user_id>/', app.views.user.unfollow_users, name='unfollow-users'),
 ]
 
 if settings.DEBUG:
