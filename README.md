@@ -13,7 +13,7 @@
 *  Lancer un terminal et rentrer les commandes suivantes : 
 
 ````
- $ python -m venv <le nom de l'environnement> (création de l'environnement)    
+$ python -m venv <le nom de l'environnement> (création de l'environnement)    
 ````
 
 ### 2.a- Pour activer l'environnement sur windows :
@@ -32,13 +32,15 @@ $ source <le nom de l'environnement>/bin/activate
 ### 3- La dernière étape est l'installation des packages. Les packages sont référencés dans le fichier
 *  requirements.txt. Entrer la commande suivante pour installer tous les packages.
 ````
-*  $ pip install -r requirements.txt
+$ pip install -r requirements.txt
 ````
 
 ### Une fois l'environnement créé et activé, lancer le fichier main.py.
 *  À partir d'un terminal la première étape est d'exécuter le serveur.
 *  Ce rendre a la racine du projet et rentrer la commande suivante:
 ````
-   $ python manage.py runserver
+$ python manage.py runserver
 ````
+* Le serveur une fois activé, ce rendre a l'adresse suivante:
+http://127.0.0.1:8000/
 
