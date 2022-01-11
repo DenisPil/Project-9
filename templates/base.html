@@ -10,6 +10,7 @@
             <h1>LiteReview</h1>
             {% if user.is_authenticated %}
                 <p><a href="{% url 'home' %}">Flux</a></p>
+                <p><a href="{% url 'post' %}">Posts</a></p>
                 <p><a href="{% url 'follow-users' %}">Abonnements</a></p>
                 <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
             {% endif %}

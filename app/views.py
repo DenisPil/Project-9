@@ -30,11 +30,24 @@ def home(request):
     context = {'page_obj': page_obj, "follower":follower}
     return render(request, 'app/home.html', context=context)
 
+@login_required
+def post(request):
+    tickets = models.Ticket.objects.filter(Q(uploader_id= request.user.id))
+    reviews = models.Review.objects.filter(Q(uploader_id= request.user.id))
+    tickets_and_reviews = sorted(
+                                chain(tickets,reviews), 
+                                key=lambda instance: instance.date_created, 
+                                reverse=True
+                                )
+
+    paginator = Paginator(tickets_and_reviews, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj}
+    return render(request, 'app/post.html', context=context)
 
 """Vue de la création de ticket"""
 @login_required
-
-# @permission_required('app.add_ticket', raise_exception=True)
 def ticket_creator_form(request):
     form = forms.TicketForm()
     if request.method == 'POST':
@@ -70,11 +83,7 @@ def review_creator_form(request):
                   {'ticket_form': ticket_form,'review_form': review_form})
 
 
-"""Vue qui représente une seul review"""
-@login_required
-def view_review(request, review_id, ):
-    review = get_object_or_404(models.Review, id=review_id)
-    return render(request, 'app/view_review.html', context={'review': review})
+
 
 
 """Vue qui modofie ou supprime un ticket"""
@@ -134,6 +143,7 @@ def edit_review(request, review_id):
 
 
 """Vue qui représente la réponse a un ticket"""
+@login_required
 def ticket_reponse(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id= ticket_id)
     review_form = forms.ReviewForm()
@@ -186,6 +196,7 @@ def follow_users(request):
 
 
 """ Vue qui permet de ne plus suivre un utilisateur"""
+@login_required
 def unfollow_users(request, user_id):
     form = forms.DeleteFollowersForm()
     user = get_object_or_404(User, id=user_id)
