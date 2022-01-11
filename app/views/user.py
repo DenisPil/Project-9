@@ -7,38 +7,13 @@ from .. import forms, models
 from authentication.models import User
 
 
-"""Vue qui modofie ou supprime un ticket"""
-@login_required
-def edit_ticket(request, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    edit_form = forms.TicketEditForm(instance=ticket)
-    delete_form = forms.DeleteTicketForm()
-    if ticket.uploader == request.user:
-        if request.method == 'POST':
-            if 'edit_ticket' in request.POST:
-                edit_form = forms.TicketEditForm(request.POST, instance=ticket)
-                if edit_form.is_valid():
-                    edit_form.save()
-                    return redirect('home')
-            if 'delete_ticket' in request.POST:
-                delete_form = forms.DeleteTicketForm(request.POST)
-                if delete_form.is_valid():
-                    ticket.delete()
-                    return redirect('home')
-        context = {'edit_form': edit_form,
-                   'delete_form': delete_form,
-                   'ticket': ticket}
-    else:
-        raise Http404
-    return render(request, 'app/edit_ticket.html', context=context)
-
-
 """ Vue qui permet de suivre un utilisateur ou de le trouver"""
 @login_required
 def follow_users(request):
     find_user = forms.Findusers()
     form = forms.FollowUsersForm(instance=request.user)
     follower = request.user.follows.all()
+
     folowed_by = request.user.followeds_by.all()
     all_users = User.objects.all()
     if request.method == 'POST':

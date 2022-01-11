@@ -40,7 +40,8 @@ class FollowUsersForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['follows']
-
+        exclude = ['self']
+        
 class DeleteFollowersForm(forms.Form):
     delete_follower = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
