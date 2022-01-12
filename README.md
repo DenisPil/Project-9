@@ -4,10 +4,22 @@
 <img src="https://user.oc-static.com/upload/2020/09/18/16004297044411_P7.png" width="25%"></img>
 </p>
 
-## Pour utiliser ce programme il faut commencer par installer l'environnement virtuel.
+
+## Pour utiliser ce programme il faut commencer par télécharger le dépôt GitHub.
+
+### 1- Copier le dépôt (repository) GitHub :
+* Pour cela lancer un terminal, déplacer vous dans le dossier voulue. 
+* créer un nouveau dossier
+````
+$ mkdir litereview
+````
+* télécharger le dépôt 
+````
+$ git clone https://github.com/DenisPil/Project-9
+````
 
 
-
+## La prochaine étape est d'installer l'environnement virtuel.
 
 ### 1- Créér l'environnement virtuel :
 *  Lancer un terminal et rentrer les commandes suivantes : 
@@ -34,6 +46,9 @@ $ source <le nom de l'environnement>/bin/activate
 ````
 $ pip install -r requirements.txt
 ````
+
+
+## La dernière étape est d'activer le serveur de développement.
 
 ### 4- Une fois l'environnement créé et activé, il faut activer le serveur de développement.
 *  À partir d'un terminal la première étape est d'exécuter le serveur.
