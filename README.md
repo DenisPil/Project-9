@@ -30,7 +30,7 @@ $ python -m venv <le nom de l'environnement> (création de l'environnement)
 
 ### Pour activer l'environnement sur windows :
 ````
-$ <le nom de l'environnement>/Scripts.activate 
+$ <le nom de l'environnement>/Scripts/activate 
 ````
 
 ### OU
