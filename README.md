@@ -50,7 +50,7 @@ $ pip install -r requirements.txt
 
 ## La dernière étape est d'activer le serveur de développement.
 
-### 4- Une fois l'environnement créé et activé, il faut activer le serveur de développement.
+### 1- Une fois l'environnement créé et activé, il faut activer le serveur de développement.
 *  À partir d'un terminal la première étape est d'exécuter le serveur.
 *  Se rendre à la racine du projet et rentrer la commande suivante :
 ````
@@ -58,7 +58,7 @@ $ python manage.py runserver
 ````
 * Le serveur est activé, se rendre à l'adresse suivante : http://127.0.0.1:8000/
 
-### 5- Se connecter avec le compte admin.
+### 2- Se connecter avec le compte admin.
 * se rendre à l'adresse : http://127.0.0.1:8000/admin
 * Nom d'utilisateur : admin
 * Mot de passe : admin1
