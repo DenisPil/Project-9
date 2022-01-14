@@ -13,7 +13,6 @@ def follow_users(request):
     find_user = forms.Findusers()
     form = forms.FollowUsersForm(instance=request.user)
     follower = request.user.follows.all()
-
     folowed_by = request.user.followeds_by.all()
     all_users = User.objects.all()
     if request.method == 'POST':

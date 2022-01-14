@@ -40,8 +40,13 @@ class FollowUsersForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['follows']
-        exclude = ['self']
-        
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['follows'].queryset = User.objects.exclude(username="admin").exclude(username=self.instance.username)
+
+
+
 class DeleteFollowersForm(forms.Form):
     delete_follower = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 

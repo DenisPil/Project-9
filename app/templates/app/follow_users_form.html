@@ -7,18 +7,12 @@
             {{ find_user.as_p }}
             {% csrf_token %}
             <button type="submit" >Confirmer</button>
-        </form>
-
     <h2>Suivre des utilisateurs</h2>
     <form method="post">
         {{ form.as_p }}
-        {% if option == user %}
-            <p>zeze</p>
-          
-        {% endif %}
         {% csrf_token %}
         <button type="submit" >Confirmer</button>
-
+    </form>
     <h2>Abonnements</h2>
     {% for i in follower %}
     <p><strong>{{i.username}}</strong><a href="{% url 'unfollow-users' i.id %}">Désabonner</a></p>
