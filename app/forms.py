@@ -43,8 +43,8 @@ class FollowUsersForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['follows'].queryset = User.objects.exclude(username="admin").exclude(username=self.instance.username)
-
+        self.fields['follows'].queryset = User.objects.exclude(
+            username="admin").exclude(username=self.instance.username)
 
 
 class DeleteFollowersForm(forms.Form):

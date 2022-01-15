@@ -16,6 +16,7 @@ def follow_users(request):
     folowed_by = request.user.followeds_by.all()
     all_users = User.objects.all()
     if request.method == 'POST':
+        print(request.method, request.POST) 
         if 'add_follower' in request.POST:
             form = forms.FollowUsersForm(request.POST, instance=request.user)
             if form.is_valid():
