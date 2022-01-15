@@ -12,7 +12,8 @@ from .. import models
 def home(request):
     tickets = models.Ticket.objects.filter(uploader__in=request.user.follows.all())
     reviews = models.Review.objects.filter(
-        Q(uploader__in=request.user.follows.all()) | Q(uploader__in=request.user.followeds_by.all()))
+        Q(uploader__in=request.user.follows.all()) | Q(uploader__in=request.user.followeds_by.all())
+        | Q(uploader__in=request.user.username))
     follower = request.user.follows.all()
     tickets_and_reviews = sorted(chain(tickets, reviews),
                                  key=lambda instance: instance.date_created,

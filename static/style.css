@@ -272,7 +272,7 @@ body, html {
   height: 200px;
   width: 200px;
   overflow: hidden;
-  margin-left:38px;
+  margin-left:10px;
   font-size: 1.5em;
 }
 
@@ -299,7 +299,6 @@ body, html {
     margin: auto;
     width: 100%;
     margin-top: 10px;
-    padding-top: 15px;
     font-size: 1.1em;
 }
 .ticket_creator ,.review_creator, .ticket_reponse{
