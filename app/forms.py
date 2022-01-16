@@ -5,8 +5,9 @@ from . import models
 
 User = get_user_model()
 
-"""Formulaire pour la création de nouveau ticket"""
+
 class TicketForm(forms.ModelForm):
+    """Formulaire pour la création de nouveau ticket"""
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     class Meta:
@@ -14,8 +15,8 @@ class TicketForm(forms.ModelForm):
         fields = ['book_name', 'author_book', 'content', 'image']
 
 
-"""Formulaire pour la création d'une review"""
 class ReviewForm(forms.ModelForm):
+    """Formulaire pour la création d'une review"""
     edit_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     class Meta:
@@ -23,18 +24,18 @@ class ReviewForm(forms.ModelForm):
         fields = ['headline', 'content', 'rating']
 
 
-"""Formulaire pour delete un Ticket"""
 class DeleteTicketForm(forms.Form):
+    """Formulaire pour delete un Ticket"""
     delete_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
 
-"""Formulaire pour delete un Review"""
 class DeleteReviewForm(forms.Form):
+    """Formulaire pour delete un Review"""
     delete_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
 
-"""Formulaire pour suivre un utilisateur"""
 class FollowUsersForm(forms.ModelForm):
+    """Formulaire pour suivre un utilisateur"""
     add_follower = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     class Meta:
@@ -48,13 +49,19 @@ class FollowUsersForm(forms.ModelForm):
 
 
 class DeleteFollowersForm(forms.Form):
-    delete_follower = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+    """Formulaire pour ne plus suivre un utilisateur"""
+    delete_follower = forms.BooleanField(widget=forms.HiddenInput,
+                                         initial=True)
+
 
 class Findusers(forms.Form):
+    """Formulaire pour trouver un utilisateur"""
     find_follower = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     username = forms.CharField(max_length=128)
 
+
 class TicketEditForm(forms.ModelForm):
+    """Formulaire pour modifier un ticket"""
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     class Meta:

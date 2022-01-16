@@ -6,9 +6,9 @@ from django.http import Http404
 from .. import forms, models
 
 
-"""Vue de la création d'une review'"""
 @login_required
 def review_creator_form(request):
+    """Vue de la création d'une review'"""
     review_form = forms.ReviewForm()
     ticket_form = forms.TicketForm()
     if request.method == 'POST':
@@ -27,9 +27,9 @@ def review_creator_form(request):
     return render(request, 'app/review_creator.html', context=context)
 
 
-"""Vue qui modofie ou supprime un review"""
 @login_required
 def edit_review(request, review_id):
+    """Vue qui modofie ou supprime un review"""
     review = get_object_or_404(models.Review, id=review_id)
     edit_form = forms.ReviewForm(instance=review)
     delete_form = forms.DeleteReviewForm()

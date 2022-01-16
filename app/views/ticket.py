@@ -6,9 +6,9 @@ from django.http import Http404
 from .. import forms, models
 
 
-"""Vue de la création de ticket"""
 @login_required
 def ticket_creator_form(request):
+    """Vue de la création de ticket"""
     form = forms.TicketForm()
     if request.method == 'POST':
         form = forms.TicketForm(request.POST, request.FILES)
@@ -20,9 +20,10 @@ def ticket_creator_form(request):
             return redirect('home')
     return render(request, 'app/ticket_creator.html', context={'form': form})
 
-"""Vue qui modofie ou supprime un ticket"""
+
 @login_required
 def edit_ticket(request, ticket_id):
+    """Vue qui modofie ou supprime un ticket"""
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     edit_form = forms.TicketEditForm(instance=ticket)
     delete_form = forms.DeleteTicketForm()
@@ -46,9 +47,9 @@ def edit_ticket(request, ticket_id):
     return render(request, 'app/edit_ticket.html', context=context)
 
 
-"""Vue qui représente la réponse a un ticket"""
 @login_required
 def ticket_reponse(request, ticket_id):
+    """Vue qui représente la réponse a un ticket"""
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     review_form = forms.ReviewForm()
     if request.method == 'POST':
